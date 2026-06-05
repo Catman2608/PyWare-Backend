@@ -1,0 +1,84 @@
+/* General page styling */
+body {
+    background-color: #f0f2f5; /* Light grey background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the image */
+.header-image {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Specific styling for the image itself */
+.header-image img {
+    width: 150px;       /* Adjust this to change the size */
+    height: 150px;      /* Keep width and height same for a circle */
+    object-fit: cover;  /* Prevents the image from stretching */
+    border-radius: 50%; /* Makes the image a circle */
+    border: 4px solid #ff4d6d; /* Optional: adds a colorful ring */
+}
+
+/* The Invitation Card */
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    border-top: 8px solid #ff4d6d; /* Festive pink accent */
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #4a4a4a;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.details p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+.message {
+    margin-top: 25px;
+    font-style: italic;
+    color: #888;
+}
+
+/* A fun RSVP button */
+.rsvp-btn {
+    margin-top: 25px;
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.rsvp-btn:hover {
+    background-color: #ff758f;
+    transform: scale(1.05);
+}
+
+.header-image {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
