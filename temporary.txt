@@ -1,0 +1,7 @@
+            <div class="section-header">
+                <span class="section-label">Supported Games</span>
+                <h2 class="section-title">One ecosystem. Multiple games.</h2>
+                <p class="section-subtitle">
+                    Every PyWare product supports multiple games, and we're constantly expanding compatibility.
+                </p>
+            </div>
