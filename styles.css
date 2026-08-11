@@ -30,6 +30,12 @@
     --spacing-lg: 20px;
     --spacing-xl: 24px;
     --spacing-2xl: 40px;
+
+    /* Added for full consistency across all components */
+    --text-primary: #f1f1f1;
+    --accent-primary: #fa6b35;
+    --bg-primary: #070f12;
+    --bg-secondary: #070f12;
 }
 .navbar {
     position: sticky;
@@ -42,7 +48,7 @@
 
     padding: 16px 32px;
 
-    background: rgba(15, 15, 20, 0.8);
+    background: rgba(16, 24, 28, 0.85);
     backdrop-filter: blur(10px);
 
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -55,7 +61,7 @@
 
     font-size: 1.2rem;
     font-weight: 700;
-    color: white;
+    color: var(--text);
 }
 
 .logo img {
@@ -70,14 +76,14 @@
 }
 
 .nav-links a {
-    color: #b8b8b8;
+    color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
     transition: 0.2s;
 }
 
 .nav-links a:hover {
-    color: #fa6b35;
+    color: var(--accent);
 }
 body {
     background: var(--bg);
@@ -128,7 +134,7 @@ body {
 }
 .hero h2 {
     font-size: clamp(1.5rem, 6vw, 3rem);
-    color: white;
+    color: var(--text);
     line-height: 1.1;
     margin-bottom: var(--spacing-xl);
     text-shadow: 0 0 25px var(--accent-glow);
@@ -170,7 +176,7 @@ body {
 }
 .hero-compact h2 {
     font-size: clamp(1.5rem, 6vw, 3rem);
-    color: white;
+    color: var(--text);
     line-height: 1.1;
     margin-bottom: var(--spacing-xl);
     text-shadow: 0 0 25px var(--accent-glow);
@@ -287,7 +293,7 @@ body {
     margin-top: 16px;
 }
 
-.macro-card .button {
+.feature-card .button {
     display: block;
     width: 100%;
 
@@ -312,7 +318,7 @@ body {
         transform 0.2s ease;
 }
 
-.macro-card .button:hover {
+.feature-card .button:hover {
     background: rgba(250, 107, 53, 0.08);
     border-color: rgba(250, 107, 53, 0.6);
     transform: translateY(-2px);
@@ -564,43 +570,6 @@ body {
     padding: 0 var(--spacing-xl);
 }
 
-.macro-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-xl);
-    margin: 32px 0 48px 0;
-}
-
-.macro-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-light);
-    border-radius: 20px;
-    padding: var(--spacing-xl);
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s;
-    cursor: default;
-}
-
-.macro-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--accent);
-    background: rgba(250, 107, 53, 0.05);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
-}
-
-.macro-card h4 {
-    color: var(--accent);
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-    font-weight: 600;
-}
-
-.macro-card p {
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
 .download-layout {
     display: grid;
     grid-template-columns: 7fr 3fr;
@@ -675,17 +644,17 @@ body {
     font-size: 2rem;
     margin-bottom: 1rem;
     transition: transform .3s ease;
-    filter: drop-shadow(0 0 10px rgba(138,92,246,.4));
+    filter: drop-shadow(0 0 10px var(--accent-glow));
 }
 
 .feature-card h3 {
-    color: white;
+    color: var(--text);
     margin-bottom: .75rem;
     transition: color .3s ease;
 }
 
 .feature-card:hover h3 {
-    color: var(--accent-primary);
+    color: var(--accent);
 }
 
 .feature-card p {
@@ -724,9 +693,6 @@ body {
 
 /* Extra responsiveness */
 @media (max-width: 760px) {
-    .macro-grid {
-        gap: var(--spacing-lg);
-    }
     .carousel-card {
         width: 260px;
     }
@@ -811,4 +777,12 @@ html, body {
 
 .switch input:checked + .slider::before {
     transform: translateX(22px);
+}
+
+/* Download sidebar buttons - full width for consistency */
+.download-sidebar .primary-button,
+.download-sidebar .secondary-button {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 8px;
 }
