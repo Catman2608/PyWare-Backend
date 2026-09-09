@@ -4,71 +4,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Solar Macros Backend</title>
+    <script src="macros.js"></script>
+    <title>Solar Macros</title>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">
+        <a href="index.html" class="logo">
             <img src="logo.png" alt="Solar Macros Logo">
             <span>Solar Macros</span>
-        </div>
+        </a>
 
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="macros.html">Downloads</a>
             <a href="showcases.html">Showcases</a>
-            
-            
             <a href="about.html">About</a>
         </div>
     </nav>
-    
+
     <section class="hero-compact">
         <h2>All Macros</h2>
-
         <p>
             Select the macro built for your game and start optimizing your gameplay today.
         </p>
     </section>
-    
+
     <section class="content-container">
-        <div class="features-grid">
-            <div class="feature-card animate-in">
-                <h3>Solar Fishing</h3>
-                <p style="color: white;">Advanced AI-powered detection and multi-rod support.</p>
-                <p>Status: Available Now.</p>
-                <p>Version: 5.1.</p>
-                <p>Release Date: August 19, 2026.</p>
-                <a href="fishing.html" class="button">View Details</a>
-            </div>
-
-            <div class="feature-card animate-in">
-                <h3>Solar Fishing Lite</h3>
-                <p style="color: white;">Designed for users who want the core fishing experience with simple sewtup.</p>
-                <p>Status: Available Now.</p>
-                <p>Version: 1.51.</p>
-                <p>Release Date: August 29, 2026.</p>
-                <a href="fishinglite.html" class="button">View Details</a>
-            </div>
-
-            <div class="feature-card animate-in">
-                <h3>Solar Automate</h3>
-                <p style="color: white;">Customizable Recording and Playback Automation.</p>
-                <p>Status: Available Now.</p>
-                <p>Version: 2.1.</p>
-                <p>Release Date: August 9th, 2026.</p>
-                <a href="automate.html" class="button">View Details</a>
-            </div>
-
-            <div class="feature-card animate-in">
-                <h3>Solar Gardening</h3>
-                <p style="color: white;">Advanced Gardening Automation.</p>
-                <p>Status: Available Now.</p>
-                <p>Version: 3.2.</p>
-                <p>Release Date: June 17, 2026.</p>
-                <a href="gardening.html" class="button">View Details</a>
-            </div>
+        <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input
+                type="search"
+                id="macro-search"
+                placeholder="Search games or macros..."
+                autocomplete="off"
+                aria-label="Search games or macros"
+            >
         </div>
+        <p class="search-empty" id="search-empty" hidden>No macros match that search.</p>
+
+        <div class="macros-grid" id="macros-grid">
+            <article class="macro-card animate-in" data-search="fisch solar fishing advanced lite">
+                <img src="images/fisch.png" class="macro-card-icon" alt="Fisch">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>Fisch</h3>
+                        <p class="macro-count">2 macros available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Fishing - Advanced</span>
+                            <a href="fishing.html" class="macro-item-link">View</a>
+                        </div>
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Fishing Lite - Simple</span>
+                            <a href="fishinglite.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="macro-card animate-in" data-search="blox fruits solar fishing advanced">
+                <img src="images/bloxfruits.png" class="macro-card-icon" alt="Blox Fruits">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>Blox Fruits</h3>
+                        <p class="macro-count">1 macro available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Fishing - Advanced</span>
+                            <a href="fishing.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="macro-card animate-in" data-search="king legacy solar fishing advanced">
+                <img src="images/kinglegacy.png" class="macro-card-icon" alt="King Legacy">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>King Legacy</h3>
+                        <p class="macro-count">1 macro available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Fishing - Advanced</span>
+                            <a href="fishing.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="macro-card animate-in" data-search="grand blue solar fishing advanced">
+                <img src="images/grandblue.png" class="macro-card-icon" alt="Grand Blue">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>Grand Blue</h3>
+                        <p class="macro-count">1 macro available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Fishing - Advanced</span>
+                            <a href="fishing.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="macro-card animate-in" data-search="grow a garden solar gardening simple">
+                <img src="images/growagarden.png" class="macro-card-icon" alt="Grow A Garden">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>Grow A Garden</h3>
+                        <p class="macro-count">1 macro available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Gardening - Simple</span>
+                            <a href="gardening.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="macro-card animate-in" data-search="garden horizons solar gardening simple">
+                <img src="images/gardenhorizons.png" class="macro-card-icon" alt="Garden Horizons">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>Garden Horizons</h3>
+                        <p class="macro-count">1 macro available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Gardening - Simple</span>
+                            <a href="gardening.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="macro-card animate-in" data-search="grow a garden 2 solar gardening simple">
+                <img src="images/growagarden2.png" class="macro-card-icon" alt="Grow A Garden 2">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>Grow A Garden 2</h3>
+                        <p class="macro-count">1 macro available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Gardening - Simple</span>
+                            <a href="gardening.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="macro-card animate-in" data-search="any game solar automate make one yourself community">
+                <img src="images/automate.png" class="macro-card-icon" alt="Any Game">
+                <div class="macro-card-body">
+                    <div class="macro-card-header">
+                        <h3>Any Game</h3>
+                        <p class="macro-count">1 macro available</p>
+                    </div>
+                    <div class="macro-list">
+                        <div class="macro-item">
+                            <span class="macro-item-name">Solar Automate - Make One Yourself</span>
+                            <a href="automate.html" class="macro-item-link">View</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 </body>
