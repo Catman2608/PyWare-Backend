@@ -332,15 +332,16 @@ input {
     position: relative;
     width: 100%;
     min-height: 36px;
-    padding: 8px 14px 8px 16px;
+    padding: 8px 12px 8px 12px;
     display: flex;
     align-items: center;
+    gap: 10px;
     border: none;
     border-radius: 8px;
     background: transparent;
     color: var(--text-muted);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     text-align: left;
     cursor: pointer;
@@ -348,6 +349,18 @@ input {
         background 0.16s ease,
         color 0.16s ease,
         transform 0.16s ease;
+}
+
+.sidebar button .icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    display: block;
+    color: inherit;
+}
+
+.sidebar button.active .icon {
+    color: var(--accent-color);
 }
 
 .sidebar button::before {
@@ -377,9 +390,23 @@ input {
 }
 
 .sidebar button.active {
-    background: rgba(255, 255, 255, 0.07);
-    color: var(--text-primary);
     font-weight: 600;
+    /* Left-to-right gradient on the active tab label text */
+    background: linear-gradient(to right, var(--left-gradient), var(--right-gradient));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.sidebar button.active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .sidebar button.active::before {
@@ -404,6 +431,16 @@ input {
     display: none;
 }
 
+/* Mode-dependent panels and color groups (overrides .panel { display: flex }) */
+.panel[hidden],
+#bar-colors-container[hidden],
+#arrow-colors-container[hidden],
+#fish-colors-container[hidden],
+#pinion_notes-colors-container[hidden],
+.special-rod-setting[hidden] {
+    display: none !important;
+}
+
 /* =========================
    CONFIG BAR
    ========================= */
@@ -421,7 +458,7 @@ input {
 
 .config-section label {
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     color: var(--text-muted);
     white-space: nowrap;
@@ -437,7 +474,7 @@ input {
     background: var(--bg-input);
     color: var(--text-primary);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     outline: none;
 
@@ -518,7 +555,7 @@ input {
     content: "•";
     margin-left: 10px;
     color: var(--text-subtle);
-    font-weight: 300;
+    font-weight: 450;
 }
 
 .panel-header .description {
@@ -526,7 +563,7 @@ input {
     min-width: 0;
     margin: 0;
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     line-height: 1.35;
     color: var(--text-secondary);
@@ -598,7 +635,7 @@ input {
 
 .text label {
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     color: var(--text-label);
     white-space: nowrap;
@@ -654,7 +691,7 @@ input {
     outline: none;
     width: 120px;
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     transition: all 0.2s ease;
     margin-left: auto;
@@ -678,7 +715,7 @@ input {
 
 .switch2 p {
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     color: var(--text-label);
 }
@@ -747,7 +784,7 @@ input {
 .dropdown label,
 .hotkey-row span {
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     color: var(--text-label);
 }
@@ -761,7 +798,7 @@ select {
     background-color: var(--bg-input);
     color: var(--text-primary);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     outline: none;
 
@@ -982,7 +1019,7 @@ select option {
 .slider-row > p {
     flex: 0 0 132px;
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     color: var(--text-label);
     white-space: nowrap;
@@ -1002,7 +1039,7 @@ select option {
 .slider-row .range-input::-webkit-slider-runnable-track {
     height: 6px;
     border-radius: 999px;
-    background: #2a3138;
+    background: linear-gradient(to right, var(--left-gradient), var(--right-gradient));
 }
 
 .slider-row .range-input::-webkit-slider-thumb {
@@ -1012,26 +1049,24 @@ select option {
     height: 16px;
     margin-top: -5px;
     border-radius: 50%;
-    background: var(--accent-color);
+    background: var(--text-primary);
     border: 0;
     box-shadow: 0 0 0 3px var(--focus-glow);
-
 }
 
 .slider-row .range-input::-moz-range-track {
     height: 6px;
     border-radius: 999px;
-    background: #2a3138;
+    background: linear-gradient(to right, var(--left-gradient), var(--right-gradient));
 }
 
 .slider-row .range-input::-moz-range-thumb {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--accent-color);
+    background: linear-gradient(to right, var(--left-gradient), var(--right-gradient));
     border: 0;
     box-shadow: 0 0 0 3px var(--focus-glow);
-
 }
 
 .slider-row .range-input:focus-visible {
@@ -1053,7 +1088,7 @@ select option {
     background: var(--bg-input);
     color: var(--text-primary);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 0.3px;
     text-align: right;
     outline: none;
@@ -1211,7 +1246,7 @@ select option {
 }
 
 .banner-actions .btn-primary {
-    background: var(--accent-color);
+    background: linear-gradient(to right, var(--left-gradient), var(--right-gradient));
     color: var(--button-text);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
@@ -1254,4 +1289,115 @@ select option {
         justify-content: flex-end;
         flex-wrap: wrap;
     }
+}
+
+/* ── About Tab ── */
+.credits {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.credit-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+.credit-avatar {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border-card);
+    background: var(--bg-box);
+}
+
+.credit-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.credit-name {
+    font-weight: 600;
+    font-size: 15px;
+    background: linear-gradient(to right, var(--left-gradient), var(--right-gradient));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.credit-role {
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.disclaimer {
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-card);
+}
+
+.disclaimer strong {
+    color: #ff6b6b;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+}
+
+.disclaimer p {
+    margin: 6px 0 0 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+}
+
+.resource-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.resource-links a {
+    color: #4ecdc4;
+    text-decoration: none;
+    font-size: 14px;
+    width: fit-content;
+}
+
+.resource-links a:hover {
+    text-decoration: underline;
+    color: #6ee7de;
+}
+
+/* =========================
+   FAQ
+   ========================= */
+
+.faq-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-card);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+    padding-bottom: 4px;
+}
+
+.faq-problem {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.2px;
+}
+
+.faq-solution {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-secondary);
 }
