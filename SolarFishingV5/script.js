@@ -1,7 +1,7 @@
 const APP_VERSION = "5.2";
 const BETA_VERSION = "0";
 const DEVELOPER = "Catman2608";
-const VERSION_ID = "0";
+const VERSION_ID = "1";
 
 // Expose for Python version check via evaluate_js
 window.APP_VERSION = APP_VERSION;
