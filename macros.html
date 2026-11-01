@@ -8,18 +8,14 @@
     <title>Solar Macros</title>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="Solar Macros Logo">
-            <span>Solar Macros</span>
-        </a>
-
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="macros.html">Downloads</a>
-            <a href="showcases.html">Showcases</a>
-            <a href="about.html">About</a>
-        </div>
+    <nav>
+        <h2><a href="index.html">Solar Macros</a></h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="macros.html">Downloads</a></li>
+            <li><a href="showcases.html">Showcases</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
     </nav>
 
     <section class="hero-compact">
@@ -29,22 +25,27 @@
         </p>
     </section>
 
-    <section class="content-container">
-        <div class="search-bar">
-            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
-            <input
-                type="search"
-                id="macro-search"
-                placeholder="Search games or macros..."
-                autocomplete="off"
-                aria-label="Search games or macros"
-            >
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Available Macros</h2>
+            <p class="description">Browse all Solar Macros products. Find the right automation tool for your game and start optimizing today.</p>
         </div>
-        <p class="search-empty" id="search-empty" hidden>No macros match that search.</p>
+        <div class="panel-body">
+            <div class="search-bar">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <input
+                    type="search"
+                    id="macro-search"
+                    placeholder="Search games or macros..."
+                    autocomplete="off"
+                    aria-label="Search games or macros"
+                >
+            </div>
+            <p class="search-empty" id="search-empty" hidden>No macros match that search.</p>
 
-        <div class="macros-grid" id="macros-grid">
+            <div class="macros-grid" id="macros-grid">
             <article class="macro-card animate-in" data-search="fisch solar fishing advanced lite">
                 <img src="images/fisch.png" class="macro-card-icon" alt="Fisch">
                 <div class="macro-card-body">
@@ -176,6 +177,7 @@
                     </div>
                 </div>
             </article>
+        </div>
         </div>
     </section>
 </body>

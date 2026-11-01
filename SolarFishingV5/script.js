@@ -1,11 +1,13 @@
 const APP_VERSION = "5.2";
 const BETA_VERSION = "0";
 const DEVELOPER = "Catman2608";
+const VERSION_ID = "0";
 
 // Expose for Python version check via evaluate_js
 window.APP_VERSION = APP_VERSION;
 window.BETA_VERSION = BETA_VERSION;
 window.DEVELOPER = DEVELOPER;
+window.VERSION_ID = VERSION_ID;
 
 const validHexColor = /^#([0-9A-F]{3}|[0-9A-F]{6})$/i;
 
@@ -33,6 +35,53 @@ document.querySelectorAll(".tab-button").forEach((button) => {
 function _pyApi() {
     return window.pywebview && window.pywebview.api ? window.pywebview.api : null;
 }
+
+/**
+ * Get the Python backend's app version, beta version, developer name, and VERSION_ID.
+ * Calls the Api.get_python_version_info method exposed by pywebview.
+ * @returns {Promise<{app_version: any, beta_version: any, developer: string|null, version_id: string|null, error?: string}>}
+ */
+async function getPythonVersionInfo() {
+    const api = _pyApi();
+    if (!api || typeof api.get_python_version_info !== "function") {
+        return {
+            app_version: null,
+            beta_version: null,
+            developer: null,
+            version_id: null,
+            error: "Python API not available"
+        };
+    }
+    try {
+        const info = await api.get_python_version_info();
+        if (info && typeof info === "object") {
+            return {
+                app_version: info.app_version ?? null,
+                beta_version: info.beta_version ?? null,
+                developer: info.developer ?? null,
+                version_id: info.version_id ?? null
+            };
+        }
+        return {
+            app_version: null,
+            beta_version: null,
+            developer: null,
+            version_id: null,
+            error: "Unexpected response from Python"
+        };
+    } catch (e) {
+        return {
+            app_version: null,
+            beta_version: null,
+            developer: null,
+            version_id: null,
+            error: String(e)
+        };
+    }
+}
+
+// Expose for any callers that need it
+window.getPythonVersionInfo = getPythonVersionInfo;
 
 
 async function detectRoblox() {
@@ -256,14 +305,20 @@ function selectedConfigName() {
     return "Default";
 }
 
-async function refreshConfigs(preferred) {
+async function refreshConfigs(preferred, reportStatus = false) {
+    const finish = (configs) => {
+        if (reportStatus) {
+            setStatus("Configs refreshed" + (configs.length ? ` (${configs.length})` : ""));
+        }
+        return configs;
+    };
     const api = _pyApi();
     const select = document.getElementById("config_list");
     if (!select) {
-        return [];
+        return finish([]);
     }
     if (!api || typeof api.list_configs !== "function") {
-        return [];
+        return finish([]);
     }
 
     let configs = [];
@@ -291,7 +346,7 @@ async function refreshConfigs(preferred) {
         select.value = configs[0];
     }
 
-    return configs;
+    return finish(configs);
 }
 
 function collectSettingsData() {
@@ -1482,13 +1537,7 @@ async function loadGlobalSettings() {
     return {};
 }
 
-async function RefreshConfigs() {
-    const preferred = selectedConfigName();
-    const configs = await refreshConfigs(preferred);
-    setStatus("Configs refreshed" + (configs && configs.length ? ` (${configs.length})` : ""));
-}
-
-async function AddRod() {
+async function addRod() {
     // Save current settings first
     try {
         await saveSettings();
@@ -1558,7 +1607,7 @@ async function AddRod() {
     });
 }
 
-async function DeleteRod() {
+async function deleteRod() {
     const name = selectedConfigName();
     if (!name) {
         return;
@@ -1613,7 +1662,7 @@ async function DeleteRod() {
     });
 }
 
-async function ResetSettings() {
+async function resetSettings() {
     const name = selectedConfigName();
     showUpdateBanner({
         title: "Reset Settings",
@@ -1669,7 +1718,7 @@ async function ResetSettings() {
     });
 }
 
-async function OpenFolder() {
+async function openFolder() {
     const api = _pyApi();
     if (!api || typeof api.open_base_folder !== "function") {
         setStatus("Open folder unavailable");
@@ -1708,7 +1757,7 @@ function _suggestConfigNameFromFile(filename) {
     return name || "Imported";
 }
 
-async function ImportConfigs() {
+async function importConfigs() {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".json,.ini,.txt,application/json,text/plain";
@@ -1878,8 +1927,13 @@ async function ImportConfigs() {
     input.click();
 }
 
-async function ExportConfigs() {
-    const name = selectedConfigName() || "config";
+async function exportConfigs() {
+    const api = _pyApi();
+    if (!api || typeof api.export_config !== "function") {
+        setStatus("Export unavailable");
+        return;
+    }
+
     let settings = {};
     try {
         settings = collectSettingsData();
@@ -1887,20 +1941,17 @@ async function ExportConfigs() {
         settings = collectSettings();
     }
 
-    const safeName = String(name).replace(/[\\/:*?"<>|]/g, "").trim() || "config";
-    const filename = safeName + ".json";
-    const json = JSON.stringify(settings, null, 4);
-    const blob = new Blob([json], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.style.display = "none";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-
-    setStatus("Exported: " + filename);
+    try {
+        const result = await api.export_config(settings);
+        if (result && result.success) {
+            const path = result.path || result.filename || "config.json";
+            setStatus(`Exported: ${path}`);
+        } else if (result && result.error && result.error !== "Cancelled") {
+            setStatus(`Export failed: ${result.error}`);
+        }
+        // Cancelled: leave status unchanged
+    } catch (err) {
+        console.error(err);
+        setStatus("Export failed");
+    }
 }
