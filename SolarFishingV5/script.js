@@ -726,7 +726,7 @@ function updateShakeMode() {
 
 function updateFishingVisibility() {
     const fishingMode = (document.getElementById("fishing_mode") || {}).value || "color";
-    const profile = (document.getElementById("fishing_profile") || {}).value || "normal";
+    const profile = (document.getElementById("special_rod") || {}).value || "normal";
     const isLine = fishingMode === "line";
     const isPinion = profile === "notes";
 
@@ -748,7 +748,7 @@ function updateFishingVisibility() {
 }
 
 function updateSpecialRods() {
-    const profile = (document.getElementById("fishing_profile") || {}).value || "normal";
+    const profile = (document.getElementById("special_rod") || {}).value || "normal";
     const panel = document.getElementById("special-rods-panel");
     const settings = document.querySelectorAll(".special-rod-setting");
     let anyVisible = false;
@@ -1237,7 +1237,7 @@ function updateAccentColor() {
     document.documentElement.style.setProperty("--right-gradient", rightGradient);
     document.documentElement.style.setProperty("--accent-color", accentColor);
 
-    // Glow version – use left color if gradient, otherwise the static color
+    // Glow version - use left color if gradient, otherwise the static color
     const glowBase = isGradient ? leftGradient : accentColor;
     const r = parseInt(glowBase.substr(1, 2), 16);
     const g = parseInt(glowBase.substr(3, 2), 16);

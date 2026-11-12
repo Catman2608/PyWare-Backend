@@ -51,7 +51,7 @@ html, body {
     color: var(--text);
 }
 
-nav {
+.navbar {
     background-color: var(--surface);
     display: flex;
     justify-content: space-between;
@@ -59,39 +59,38 @@ nav {
     padding: 5px 15px;
 }
 
-h2 {
-    color: var(--text);
+.navbar h2 {
+    color: rgb(255, 255, 255);
     padding-left: 10px;
-    margin: 0;
     font-size: 22px;
 }
 
-ul {
+.navbar ul {
     display: flex;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-li {
+.navbar li {
     padding-left: 5px;
     padding-right: 15px;
 }
 
-a {
+.navbar a {
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-a:hover {
+.navbar a:hover {
     color: var(--accent);
     text-decoration: none;
 }
-nav:hover {
+.navbar:hover {
     background-color: var(--surface-hover)
 }
-h2:hover {
+.navbar h2:hover {
     color: var(--accent);
 }
 
